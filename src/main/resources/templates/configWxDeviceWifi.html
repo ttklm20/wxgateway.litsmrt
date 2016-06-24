@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>连接wifi</title>
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="640">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta name="msapplication-TileColor" content="#FB4040">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link rel="stylesheet" href="/css/style2.css">
+    
+<script src="/js/jquery-1.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+    <!--  <script src="/js/jquery-1.js"></script> -->
+    <script type="text/javascript">
+	if (typeof WeixinJSBridge === "undefined") {
+		document.addEventListener('WeixinJSBridgeReady', readyFunc, false);
+	} else {
+		readyFunc();
+	}
+	
+	
+	
+	$(function(){
+	 	readyFunc();
+		getSignature();
+	});
+    function connect(){
+    	configWXDeviceWiFi();
+    }
+	var nonceStr="Wm3WZYTPz0wzccnW";
+	var signature=null;
+	function getSignature(){
+		var params={
+				"nonceStr":nonceStr,"tokenId":"35f24c0616f14c1484ad3c2837ea527f"	
+		}
+		$.ajax({
+			type:"POST",
+			url:"/getSignature",
+			data:params,
+			async:false,
+			success:function(data){
+				signature=data;
+				aaa();
+			},
+			error:function(){
+				//alert("失败！");
+			}
+		});
+	}
+	var conn_stateStr="";
+	var blue_stateStr=""; 
+	function aaa(){
+		wx.config({
+		    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+		    appId: 'wx209e3684cb550475', // 必填，公众号的唯一标识
+		    timestamp:1414587457, // 必填，生成签名的时间戳
+		    nonceStr: nonceStr, // 必填，生成签名的随机串
+		    signature:signature,// 必填，签名，见附录1
+		   	jsApiList: ['configWXDeviceWiFi'] // 监听手机蓝牙的连接状态
+		});
+	 
+	}
+ 
+	var readyFunc = function onBridgeReady() {
+		document.getElementById("tt").addEventListener("touchstart", function(e){ 
+			e.preventDefault(); 
+			WeixinJSBridge.invoke('configWXDeviceWiFi', {}, function(res){});
+			 
+		});
+	 
+	};
+    </script>
+  </head>
+  <body>
+    <div class="wrapper">
+	  <div class="getstart" style="font-size: 1.8rem !important">
+	  	<p >使用 AirKiss 配置 WiFi 设备联网。</p>
+        <p>请将您的设备进入AirKiss模式后点击立即开始进行配置。</p>
+      </div>
+      <div>
+        <button class="btn btn-block" id="tt" >立即开始</button>
+      </div>
+    </div>
+  </body>
+</html>

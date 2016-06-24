@@ -1,0 +1,63 @@
+@charset "utf-8";
+/* CSS Document */
+body{ background:#ffffff;}
+body,p,h1,h2,dl,dt,dd{margin: 0;padding: 0;font-size: 1rem;color: #000; font-family:"黑体";}
+img{border:0;}
+a,button,input{-webkit-tap-highlight-color:rgba(255,0,0,0); border:0; text-decoration:none;}
+ol,ul{list-style:none;}
+.hid{width:0;height:0;overflow:hidden;text-indent:-9999px;}
+body{font-family: Helvetica; height:100%;}  
+section{position:relative; width:100%;height:100%;display:none; }
+.hide { display: none;}
+.block {display: block;}
+
+.wrap{position: fixed; height:100%;width: 100%;overflow: hidden;}
+.contianer{  height:100%;width: 100%;}
+
+.wrapslider{ position:absolute;left:0; top:0;  height:100%;width: 100%;}
+.page{position:  relative; height: 100%;}
+.navbar{ position:absolute;left:5%;top:2%; width:90%; height:56px; z-index:99}
+.navbar .bg{position:absolute;left:0;top:0; width:100%;height:56px;background:#000;border-radius:25px; opacity:0.6; }
+.navbar .navcon{position:absolute;left:3px;top:3px; }
+.navbar a{ float:left;width:194px; height:48px; font-size:28px; color:#999999; font-family:"黑体"; text-align:center; line-height:48px;}
+.navbar .on{width:184px;background:#f5433b;border-radius:25px; color:#fff;}
+/*sport*/
+#sport{ position:absolute;left:0; top:0;display:block; height:100%;width: 100%;background:url(../img/sportbg.jpg) no-repeat;}
+#sport .title{ position:absolute;top:17%; left:8%;}
+#sport .title a.buy{ display:block;width:118px; height:44px;background:#f5433b;border-radius:25px; color:#fff; text-align:center; font-size:28px; line-height:44px; margin-top:20px;}
+.data{ position:absolute;top:555px; left:10%; width:260px; height:260px; background:url(../img/databg.png) no-repeat;}
+.box{ padding:80px 0 0 0;}
+.datanum{ text-align:center; font-size:24px; color:#999999;}
+#dtbu,#sldtbu{ font-size:30px;}
+#dtbu strong,#sldtbu strong{font-size:48px; font-weight: normal; color:#666666;}
+#clock{font-size:48px; font-weight: normal; color:#666666;}
+
+.on-off{ position:absolute;left:64%; top:669px; width:72px; height:72px; background:url(../img/dian.png) no-repeat center;}
+.on-off .s1{position:absolute;left:0%; top:0%; width:72px; height:72px; border:solid 2px #fff;border-radius:65px;-webkit-animation: s1 2s infinite; opacity:0.1;}
+.on-off .s2{position:absolute;left:11%; top:11%; width:55px; height:55px; border:solid 2px #fff;border-radius:55px;-webkit-animation: s2 2s infinite; opacity:0.5;}
+@-webkit-keyframes s1
+{
+0%   {width:72px; height:72px;border-radius:65px;opacity:0.1;top:0%;}
+29%  {width:57px; height:57px;border-radius:55px;opacity:0.3;top:5%;left:5%;}
+100% {width:72px; height:72px;border-radius:65px;opacity:0.1;top:0%;}
+}@-webkit-keyframes s2
+{
+0%   {width:52px; height:52px;border-radius:55px;opacity:0.5;top:11%;left:11%;}
+29%  {width:47px; height:47px;border-radius:45px;opacity:0.3;top:13%;left:13%;}
+100% {width:52px; height:52px;border-radius:35px;opacity:0.5;top:11%;left:11%;}
+}
+#myCanvas{ position:absolute;top:600px; left:100px;}
+#my3{ position:absolute;top:620px; left:120px;}
+
+/*sleep*/
+#sleep{ position:absolute;left:0; top:0;display:block; height:100%;width: 100%;background:url(../img/sleepbg.jpg) no-repeat #e6dee3;}
+#sleep .title{ position:absolute;top:17%; left:8%;}
+#sleep .title a.buy{ display:block;width:118px; height:44px;background:#f5433b;border-radius:25px; color:#fff; text-align:center; font-size:28px; line-height:44px; margin-top:20px;}
+#sleep .on-off{ left:455px; top:717px;}
+
+/*friend*/
+#friend{ position:absolute;left:0; top:0;display:block; height:100%;width: 100%;background:url(../img/fdbg.jpg) no-repeat #b3e0e5;}
+#friend .title{ position:absolute;top:159px; left:8%;}
+#friend .title a.buy{ display:block;width:118px; height:44px;background:#f5433b;border-radius:25px; color:#fff; text-align:center; font-size:28px; line-height:44px; margin-top:20px;}
+#friend .on-off{ top:569px; left:66%;}
+#friend .databg{ position:absolute;left:8%; top:508px; width:190px; height:121px; background:url(../img/hh.png) no-repeat;}

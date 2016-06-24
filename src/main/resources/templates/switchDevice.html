@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>应用-首页</title>
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-TileColor" content="#171A27">
+    <link href="css/switch/main.css" rel="stylesheet">
+    <script src="/js/switch/vendor/modernizr.custom.js"></script>
+  </head>
+  <body>
+    <div id="ptMain" class="pt-perspective">
+      <div id="homePage" class="pt-page">
+      	  <div class="title">
+      	  	<a href="#"><img src="/img/switch/img1.jpg" class="img1" id="power"></a>
+      	  </div>
+          <div class="title"><a href="#"><img src="/img/switch/img2.jpg" class="img2" id="usb"></a></div>
+      </div>
+    </div>
+    <input id="did" value="${deviceId?c}" type="hidden" />
+	<input id="tid" value="${tokenId}" type="hidden">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://touch.code.baidu.com/touch-0.2.14.min.js"></script>
+    <script src="/js/switch/app.js"></script>
+    <script type="text/javascript">
+
+		document.getElementById("power").addEventListener("touchstart", function(e){
+		 	e.preventDefault(); 
+		 	ledControl('white');
+		});
+		document.getElementById("usb").addEventListener("touchstart", function(e){
+		 	e.preventDefault(); 
+		 	ledControl('red');  
+		});	
+	
+		var deviceId;
+		var tokenId;
+		$(function() {
+			deviceId = $('#did').val();
+			tokenId = $('#tid').val();
+		});
+
+		function ledControl(key) {
+			var params = {
+				"key" : key,
+				"deviceId" : deviceId,
+				"tokenId" : tokenId
+			};
+			$.ajax({
+				type : "POST",
+				url : "/wifi/control",
+				data : $.param(params),
+				success : function(data) {
+					if (data.indexOf("202") > 0 || data.indexOf("40002") > 0) {
+						alert("设备不在线！");
+						return;
+					}
+					if (data.indexOf("40001") > 0) {
+						alert("未绑定该产品设备！");
+						return;
+					}
+					//alert(data);
+					//alert("success!");
+				},
+				error : function() {
+					alert("连接服务器失败，请重试!");
+				}
+			});
+		}
+    </script>
+  </body>
+</html>
+

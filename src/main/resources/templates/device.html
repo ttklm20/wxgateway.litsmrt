@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>应用-首页</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimal-ui, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-TileColor" content="#171A27">
+    <link href="css/styles/main.css" rel="stylesheet">
+    <script src="js/jquery-1.js"></script>
+    <script src="js/socket.io.js"></script>
+    <script src="js/wxjdk.js"></script>
+    <!--<script src="test.js"></script>-->
+
+</head>
+<body>
+ <input id="did" value="${deviceId}" type="hidden"/>
+     <input id="tid" value="${tokenId}" type="hidden">
+<div id="homePage" class="page page-current">
+    <div class="container">
+        <div class="title">demo</div>
+        <ul id="functionList" class="function-list">
+            <li><a href="javascript:void(0)" target="_blank" class="fun-1"></a></li>
+            <li><a href="javascript:void(0)" target="_blank" class="fun-2"></a></li>
+            <li><a href="javascript:void(0)" target="_blank" class="fun-3"></a></li>
+            <li><a href="javascript:void(0)" target="_blank" class="fun-4"></a></li>
+            <li><a href="javascript:void(0)" target="_blank" class="fun-5"></a></li>
+            <li><a href="javascript:void(0)" target="_blank" class="fun-6"></a></li>
+            <li><a href="javascript:void(0)" target="_blank" class="fun-7"></a></li>
+            <li><a href="javascript:void(0)" target="_blank" class="fun-8"></a></li>
+            <li><a href="javascript:void(0)" target="_blank" class="fun-9"></a></li>
+        </ul>
+        <div class="operations"><a id="linkDebug" href="#">设备调试</a><a id="linkAddDevice" href="#">添加设备</a></div>
+    </div>
+</div>
+<div id="addDevicePage" class="page">
+    <!-- loading-->
+    <div class="loading hidden">
+        <div class="icon-loading">
+            <div class="dot dot1"></div>
+            <div class="dot dot2"></div>
+            <div class="dot dot3"></div>
+            <div class="dot dot4"></div>
+        </div>
+        <p>正在加载设备列表</p>
+    </div>
+    <div id="deviceList" class="device-list">
+        <ul>
+            <li><a href="#">设备1</a></li>
+            <li><a href="#">设备2</a></li>
+            <li><a href="#">设备3</a></li>
+            <li><a href="#">设备4</a></li>
+            <li><a href="#">设备5</a></li>
+        </ul>
+    </div>
+    <div class="actions"><a href="#" class="btn btn-block">扫描设备</a></div>
+</div>
+<div id="connectPage" class="page">
+    <!-- loading-->
+    <div class="loading">
+        <div class="icon-loading">
+            <div class="dot dot1"></div>
+            <div class="dot dot2"></div>
+            <div class="dot dot3"></div>
+            <div class="dot dot4"></div>
+        </div>
+        <p>正在连接设备</p>
+    </div>
+    <div class="actions"><a id="linkError" href="#" class="btn btn-block">模拟跳到连接失败页面</a><a id="cancelConnect" href="#"
+                                                                                           class="btn btn-block">取消连接</a>
+    </div>
+</div>
+<div id="errorPage" class="page">
+    <!-- 出错-->
+    <div class="tips tips-error"><i class="icon"></i>
+
+        <p>设备连接失败</p>
+    </div>
+    <div class="actions"><a id="reconnect" href="#" class="btn btn-block btn-blue">尝试重连</a><a id="rescan" href="#"
+                                                                                              class="btn btn-block">重新扫描</a>
+    </div>
+</div>
+<div id="debugPage" class="page">
+    <div class="console">
+        <div class="container" id="debug">
+            <!--<p>fsck_hfs started at Mon Dec 16 09:52:31 2013</p>-->
+
+            <!--<p>QUICKCHECK ONLY; FILESYSTEM CLEAN</p>-->
+
+            <!--<p>/dev/rdisk3s1: fsck_hfs completed at Sun Mar  1 11:45:33 2015</p>-->
+
+            <!--<p> </p>-->
+
+            <!--<p>fsck_hfs started at Sun Mar  1 23:46:17 2015</p>-->
+
+            <!--<p>** /dev/rdisk2 (NO WRITE)</p>-->
+
+            <!--<p>** Root file system</p>-->
+
+            <!--<p>   Executing fsck_hfs (version hfs-285).</p>-->
+
+            <!--<p>fsck_hfs completed at Sun Mar  1 23:46:17 2015</p>-->
+
+            <!--<p> </p>-->
+
+            <!--<p>/dev/rdisk2: fsck_hfs started at Sun Mar  1 23:46:20 2015</p>-->
+
+            <!--<p>/dev/rdisk2: /dev/rdisk2: ** /dev/rdisk2 (NO WRITE)</p>-->
+
+            <!--<p>/dev/rdisk2: ** Root file system</p>-->
+
+            <!--<p>/dev/rdisk2:    Executing fsck_hfs (version hfs-285).</p>-->
+
+            <!--<p> </p>-->
+
+            <!--<p>/dev/rdisk1s2: fsck_hfs started at Sun Mar  1 23:46:20 2015</p>-->
+
+            <!--<p>/dev/rdisk1s2: /dev/rdisk1s2: ** /dev/rdisk1s2 (NO WRITE)</p>-->
+
+            <!--<p>/dev/rdisk1s2:    Executing fsck_hfs (version hfs-285).</p>-->
+
+            <!--<p>QUICKCHECK ONLY; FILESYSTEM CLEAN</p>-->
+
+            <!--<p>/dev/rdisk1s2: fsck_hfs completed at Sun Mar  1 23:46:20 2015</p>-->
+
+            <!--<p>fsck_hfs started at Mon Dec 16 09:52:31 2013</p>-->
+
+            <!--<p>QUICKCHECK ONLY; FILESYSTEM CLEAN</p>-->
+
+            <!--<p>/dev/rdisk3s1: fsck_hfs completed at Sun Mar  1 11:45:33 2015</p>-->
+
+            <!--<p> </p>-->
+
+            <!--<p>fsck_hfs started at Sun Mar  1 23:46:17 2015</p>-->
+
+            <!--<p>** /dev/rdisk2 (NO WRITE)</p>-->
+
+            <!--<p>** Root file system</p>-->
+
+            <!--<p>   Executing fsck_hfs (version hfs-285).</p>-->
+
+            <!--<p>fsck_hfs completed at Sun Mar  1 23:46:17 2015</p>-->
+
+            <!--<p> </p>-->
+
+            <!--<p>/dev/rdisk2: fsck_hfs started at Sun Mar  1 23:46:20 2015</p>-->
+
+            <!--<p>/dev/rdisk2: /dev/rdisk2: ** /dev/rdisk2 (NO WRITE)</p>-->
+
+            <!--<p>/dev/rdisk2: ** Root file system</p>-->
+
+            <!--<p>/dev/rdisk2:    Executing fsck_hfs (version hfs-285).</p>-->
+
+            <!--<p> </p>-->
+
+            <!--<p>/dev/rdisk1s2: fsck_hfs started at Sun Mar  1 23:46:20 2015</p>-->
+
+            <!--<p>/dev/rdisk1s2: /dev/rdisk1s2: ** /dev/rdisk1s2 (NO WRITE)</p>-->
+
+            <!--<p>/dev/rdisk1s2:    Executing fsck_hfs (version hfs-285).</p>-->
+
+            <!--<p>QUICKCHECK ONLY; FILESYSTEM CLEAN</p>-->
+
+            <!--<p>/dev/rdisk1s2: fsck_hfs completed at Sun Mar  1 23:46:20 2015</p>-->
+        </div>
+    </div>
+    <div class="form">
+        <form id="" method="" action="">
+            <input type="text" placeholder="input any key" class="query">
+            <button class="btn-submit">发送</button>
+        </form>
+    </div>
+</div>
+<script src="js/hammerjs/hammer.min.js"></script>
+<script src="js/app.js"></script>
+<script type="text/javascript" src="js/device.js" charset="UTF-8"></script>
+</body>
+</html>

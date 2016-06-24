@@ -1,0 +1,513 @@
+/* normalize.css v3.0.0 | MIT License | git.io/normalize */
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+}
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+[hidden],
+template {
+  display: none;
+}
+a {
+  background: transparent;
+  color: #5B9BD1;
+  text-decoration: none;
+}
+a:active,
+a:hover {
+  outline: 0;
+  color: #5B9BD1;
+}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+b,
+strong {
+  font-weight: bold;
+}
+dfn {
+  font-style: italic;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+mark {
+  background: #ff0;
+  color: #000;
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  border: 0;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+figure {
+  margin: 1em 40px;
+}
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+pre {
+  overflow: auto;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+button {
+  overflow: visible;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+/*   border: 0; */
+  padding: 0;
+}
+input {
+  line-height: normal;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+legend {
+  border: 0;
+  padding: 0;
+}
+textarea {
+  overflow: auto;
+}
+optgroup {
+  font-weight: bold;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+}
+.form .form-row span.select::before,
+.product-list .box .icon-video::before {
+  width: 0;
+  height: 0;
+  font-size: 0;
+  overflow: hidden;
+}
+.order-list .box a,
+.news-list a,
+.device-list a {
+  position: relative;
+}
+.order-list .box a::after,
+.news-list a::after,
+.device-list a::after {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  margin-top: -5px;
+  content: " ";
+  width: 7px;
+  height: 11px;
+  background: url("images/icon_details.png") no-repeat;
+  background-size: 7px 11px;
+}
+.btn {
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  padding: 0 20px;
+  text-align: center;
+  background-color: #fb4040;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem !important;
+  border-radius: 2px;
+}
+.btn-block {
+  display: block;
+  padding: 0;
+  font-size: 1.8rem !important;
+  height: 45px;
+  line-height: 45px;
+}
+button.btn-block {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+/*
+.index-page .tab-index,
+.news-page .tab-news,
+.orders-page .tab-orders {
+  height: 42px;
+  line-height: 42px;
+  border-bottom: 2px solid #fb4040;
+  color: #fb4040;
+}
+.tabs {
+  zoom: 1;
+  border-bottom: 1px solid #d2d2d2;
+  background: #fff;
+  font-size: 1.4rem;
+}
+.tabs:before,
+.tabs:after {
+  content: "";
+  display: table;
+}
+.tabs:after {
+  clear: both;
+}
+.tabs a {
+  float: left;
+  width: 27.3%;
+  margin: 0 3%;
+  text-align: center;
+  height: 44px;
+  line-height: 44px;
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: #666;
+}
+.alert {
+  padding: 10px;
+  margin: 8px 8px 0;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+.alert h2 {
+  font-size: 1.8rem;
+}
+.alert p {
+  font-size: 1.4rem;
+}
+
+.heading {
+  background: #fb4040;
+}
+.heading h2 {
+  margin: 0 0 0 8px;
+  color: #fff;
+  font-size: 1.6rem;
+  height: 35px;
+  line-height: 35px;
+  font-weight: normal;
+}
+*/
+
+html,
+body {
+  background: #f8f8f8;
+}
+html {
+  font-size: 62.5%;
+}
+img {
+  display: block;
+/*   width: 100%; */
+}
+.wrapper {
+  margin: 10px;
+}
+table{
+	width: 100%;
+}
+.getstart{
+	font-size: 1.3em;
+}
+.wifi_img{
+	
+}
+.wifi_img img{
+	width: 103px;
+	margin: 0 auto;
+}
+.wifi_img p{
+	font-size: 1.6em !important;
+	text-align: center;
+}
+.devlist{
+	font-size: 1.6rem !important;
+	line-height: 1.5;
+	border: 1px solid #E5EFF6;
+	color: #555;
+}
+.devlist .devname{
+	width: 40%;
+}
+.devlist .devid{
+	width: 35%;
+}
+.devlist .devlink{
+	width: 25%;
+}
+.devlist .title{
+	font-weight: 600;
+	color: #333;
+	background-color: #F0F6FA;
+}
+.devlist td{
+	padding: 10px;
+	border-bottom: 1px solid #e5eff6;
+}
+
+.form .form-control {
+  margin-left: 66px;
+}
+.form .input-text {
+  margin-top: 20px;
+  width: 100%;
+  border: none;
+  padding: 0;
+}
+.form .control-label {
+  margin-top: 5px;
+}
+.form .form-control {
+  margin-right: 60px;
+}
+
+/* 旧文件暂不用，留作备份 */
+/*
+.main-cont {
+  padding: 8px;
+}
+.top-bar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 42px;
+  background: #fb4040;
+  color: #fff;
+  border-bottom: 1px solid #cc3434;
+  line-height: 42px;
+  z-index: 1;
+}
+.top-bar h2 {
+  margin: 0;
+  font-size: 2rem;
+  text-align: center;
+}
+.top-bar .return {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.6rem;
+  color: #fff;
+  text-decoration: none;
+  padding-left: 16px;
+  margin-left: 8px;
+  background: url("images/arrow.png") no-repeat left 10px;
+  background-size: 11px 20px;
+}
+.nav-bar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 49px;
+  background: #2f2e39;
+}
+.nav-bar a {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  font-size: 1.2rem;
+  width: 33.33%;
+  height: 20px;
+  line-height: 20px;
+  padding-top: 29px;
+  color: #9198aa;
+  text-decoration: none;
+}
+.nav-bar a::before {
+  position: absolute;
+  left: 50%;
+  top: 5px;
+  content: '';
+  width: 23px;
+  height: 25px;
+  margin-left: -12px;
+  background: url("images/nav_bar_icons.png") no-repeat;
+  background-size: 53px 170px;
+}
+.nav-bar .nav-exp-mall::before {
+  background-position: 0 0px;
+}
+.exp-mall-page .nav-bar .nav-exp-mall {
+  color: #fb4040;
+}
+.exp-mall-page .nav-bar .nav-exp-mall::before {
+  background-position: -30px 0px;
+}
+.nav-bar .nav-shop::before {
+  background-position: 0 -60px;
+}
+.shop-page .nav-bar .nav-shop {
+  color: #fb4040;
+}
+.shop-page .nav-bar .nav-shop::before {
+  background-position: -30px -60px;
+}
+.nav-bar .nav-my-devices::before {
+  background-position: 0 -120px;
+}
+.my-devices-page .nav-bar .nav-my-devices {
+  color: #fb4040;
+}
+.my-devices-page .nav-bar .nav-my-devices::before {
+  background-position: -30px -120px;
+}
+.tips-null {
+  font-size: 1.8rem;
+  text-align: center;
+  margin: 80px 0;
+  color: #999;
+}
+
+.device-list {
+  padding: 0 5px;
+}
+.device-list a {
+  display: block;
+  zoom: 1;
+  padding: 15px 40px 15px 10px;
+  text-decoration: none;
+  border-bottom: 1px solid #eee;
+}
+.device-list a:before,
+.device-list a:after {
+  content: "";
+  display: table;
+}
+.device-list a:after {
+  clear: both;
+}
+.device-list a:last-child {
+  border-bottom: none;
+}
+.device-list a .thumb {
+  float: left;
+  width: 30px;
+  height: 30px;
+}
+.device-list a .info {
+  margin-left: 50px;
+}
+.device-list a .info h3 {
+  margin: 0 0 10px;
+  font-size: 1.6rem;
+  color: #333;
+}
+.device-list a .info p {
+  margin: 0;
+  color: #666;
+  font-size: 1.3rem;
+}
+.hidden {
+  display: none !important;
+}
+.hl {
+  color: #fb4040 !important;
+}
+.icon_err{
+  margin: 0 auto;
+  background-image: url("../images/icon_error.png");
+  background-repeat: no-repeat;
+  width: 100px;
+  height:100px;
+}
+*/

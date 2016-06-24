@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta name="apple-touch-fullscreen" content="YES">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="pragram" content="no-cache">
+<meta charset="utf-8">
+
+<title>微信智能灯</title>
+
+<script src="js/jquery-1.js"></script>
+<script type="text/javascript">
+	var phoneWidth = parseInt(window.screen.width);
+	var phoneScale = phoneWidth / 640;
+	var phoneheight = parseInt(window.screen.height / phoneScale);
+
+	var ua = navigator.userAgent;
+	if (/Android (\d+\.\d+)/.test(ua)) {
+		var version = parseFloat(RegExp.$1);
+		// andriod 2.3
+		if (version > 2.3) {
+			document
+					.write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+			// andriod 2.3以上
+		} else {
+			document
+					.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+		}
+		// 其他系统
+	} else {
+		document
+				.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+	}
+</script>
+
+<script type="text/javascript">
+	var iheight = window.screen.height;
+	if (iheight == 480) {
+		document
+				.write('<link href="css/led.css" type="text/css" rel="stylesheet">');
+	} else {
+		document
+				.write('<link href="css/led.css" type="text/css" rel="stylesheet">');
+	};
+</script>
+</head>
+<body>
+
+	<div style="display: none;">
+		<img src="img/ledbg.jpg" />
+	</div>
+
+
+
+	<div class="wrap">
+
+		<!--智能灯-->
+		<div id="led" class="led">
+			<div id="ledbg" class="ledbg led-off">
+				<div class="title">
+					<img src="img/led-title.png" />
+				</div>
+
+				<div id="controlbar" class="controlbar">
+					<div class="bg"></div>
+					<a id="ledon" class="on">开启</a> <a id="ledoff" class="off hide">关闭</a>
+					<a id="red" class="ledcolor red">红</a> <a id="blue"
+						class="ledcolor blue">蓝</a> <a id="white" class="ledcolor white">白</a>
+					<a id="yellow" class="ledcolor yellow">黄</a> <a id="purple"
+						class="ledcolor purple">紫</a> <a id="orange"
+						class="ledcolor orange">橙</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<input id="did" value="${deviceId?c}" type="hidden" />
+	<input id="tid" value="${tokenId}" type="hidden">
+	<script type="text/javascript">
+		document.getElementById("ledon").addEventListener("touchstart",
+				function(e) {
+					e.preventDefault();
+					setLedOn(1);
+				});
+		document.getElementById("ledoff").addEventListener("touchstart",
+				function(e) {
+					e.preventDefault();
+					setLedOn(0);
+				});
+
+		document.getElementById("red").addEventListener("touchstart",
+				function(e) {
+					e.preventDefault();
+					setLed('red');
+				});
+		document.getElementById("blue").addEventListener("touchstart",
+				function(e) {
+					e.preventDefault();
+					setLed('blue');
+				});
+		document.getElementById("white").addEventListener("touchstart",
+				function(e) {
+					e.preventDefault();
+					setLed('white');
+				});
+		document.getElementById("yellow").addEventListener("touchstart",
+				function(e) {
+					e.preventDefault();
+					setLed('yellow');
+				});
+		document.getElementById("orange").addEventListener("touchstart",
+				function(e) {
+					e.preventDefault();
+					setLed('orange');
+				});
+		document.getElementById("purple").addEventListener("touchstart",
+				function(e) {
+					e.preventDefault();
+					setLed('purple');
+				});
+
+		//---------------------------------------------UP实际灯泡设备的颜色和开关------------------------------------------------------------------	
+		/* $(function(){
+			ledControl("red");
+		}); */
+		var deviceId;
+		var tokenId;
+		$(function() {
+			deviceId = $('#did').val();
+			tokenId = $('#tid').val();
+		});
+
+		function ledControl(key) {
+			var params = {
+				"key" : key,
+				"deviceId" : deviceId,
+				"tokenId" : tokenId
+			};
+			$.ajax({
+				type : "POST",
+				url : "/wifi/control",
+				data : $.param(params),
+				success : function(data) {
+					if (data.indexOf("202") > 0 || data.indexOf("40002") > 0) {
+						alert("设备不在线！");
+						return;
+					}
+					if (data.indexOf("40001") > 0) {
+						alert("未绑定该产品设备！");
+						return;
+					}
+					//alert(data);
+					//alert("success!");
+				},
+				error : function() {
+					alert("连接服务器失败，请重试!");
+				}
+			});
+		}
+		//---------------------------------------------DOWN控制页面灯的颜色样式和开关---------------------------------------------------
+		var bLed = 0;
+		var ledcolor = "white";
+		//灯的开关
+		function setLedOn(bTvOn) {
+			if (bTvOn == 1) {
+				//开灯
+				ledControl(ledcolor);
+
+				bLed = 1;
+				$('#ledbg').removeClass("led-off");
+				setLed(ledcolor);
+				$('#ledon').hide();
+				$('#ledoff').show();
+
+			} else {
+				if (bLed == 0) {
+					return;
+				}
+				bLed = 0;
+				clearHover();
+				$('#ledbg').removeClass();
+				$('#ledbg').addClass("ledbg led-off");
+				$('#ledon').show();
+				$('#ledoff').hide();
+				//关灯
+				ledControl("off");
+			}
+		}
+
+		//改变灯的颜色
+		function setLed(color) {
+			if (bLed == 1) {
+				ledcolor = color;
+				$('#ledbg').removeClass();
+				$('#ledbg').addClass("ledbg led-" + color);
+				clearHover();
+				$("#" + color).addClass(color + "hover");
+				//变色
+				ledControl(color);
+			}
+		}
+		function clearHover() {
+			$("#red").removeClass("redhover");
+			$("#blue").removeClass("bluehover");
+			$("#white").removeClass("whitehover");
+			$("#yellow").removeClass("yellowhover");
+			$("#orange").removeClass("orangehover");
+			$("#purple").removeClass("purplehover");
+		}
+	</script>
+</body>
+</html>

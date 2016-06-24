@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>设备列表</title>
+<meta name="HandheldFriendly" content="true">
+<meta name="MobileOptimized" content="640">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="cleartype" content="on">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="msapplication-TileColor" content="#FB4040">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<link rel="stylesheet" href="/css/style2.css">
+</head>
+<body>
+	<!--
+<div class="top-bar"><a href="javascript:window.history.back();" class="return">返回</a>
+      <h2>我的设备</h2>
+    </div>
+-->
+	<div class="wrapper">
+		<table cellpadding="0" cellspacing="0" border="0" class="devlist">
+			<tr class="title">
+				<td class="devname">设备名称</td>
+				<td class="devid">设备ID</td>
+				<td class="devlink">链接</td>
+			</tr>
+			<#list devices as device>
+			<tr>
+				<td class="devname">智能设备</td>
+				<td>${device.deviceID}</td>
+				<td><a
+					href="/ledDevice.html?deviceId=${device.deviceID}&tokenId=${tokenId}">点击链接设备</a>
+				</td>
+			</tr>
+			</#list>
+		</table>
+	</div>
+
+</body>
+</html>

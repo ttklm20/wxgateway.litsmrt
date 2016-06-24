@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta name="apple-touch-fullscreen" content="YES">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="pragram" content="no-cache">
+<meta charset="utf-8">
+
+<title>微信智能灯</title>
+
+<script src="js/jquery-1.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+var phoneWidth = parseInt(window.screen.width);
+var phoneScale = phoneWidth / 640;
+var phoneheight = parseInt(window.screen.height / phoneScale);
+
+var ua = navigator.userAgent;
+    if (/Android (\d+\.\d+)/.test(ua)) {
+        var version = parseFloat(RegExp.$1);
+        // andriod 2.3
+        if (version > 2.3) {
+            document
+                    .write('<meta name="viewport" content="width=640, minimum-scale = '+phoneScale+', maximum-scale = '+phoneScale+', target-densitydpi=device-dpi">');
+            // andriod 2.3以上
+        } else {
+            document
+                    .write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+        }
+        // 其他系统
+    } else {
+        document
+                .write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+    } 
+</script>
+
+<script type="text/javascript">
+    var iheight = window.screen.height;
+    if( iheight == 480){
+     document.write('<link href="css/led.css" type="text/css" rel="stylesheet">'); 
+    }else{
+     document.write('<link href="css/led.css" type="text/css" rel="stylesheet">'); 
+    };
+</script>
+</head>
+<body>
+    
+<div style="display:none;">
+<img src="img/ledbg.jpg" />  
+</div>
+
+
+
+<div class="wrap">
+
+        <!--智能灯-->
+         <div id="led" class="led">
+         <div id="ledbg" class="ledbg led-off">
+            <div class="title">
+                <img src="img/led-title.png" />
+            </div>
+
+            
+            <div id="controlbar" class="controlbar">
+            	<div class="bg"></div>
+            	<a id="ledon" class="on" >开启</a>
+                <a id="ledoff" class="off hide">关闭</a>
+                <a id="red" class="ledcolor red">红</a>
+                <a id="orange" class="ledcolor orange">橙</a>
+                <a id="yellow" class="ledcolor yellow">黄</a>
+                <a id="blue" class="ledcolor blue">蓝</a>
+                <a id="purple" class="ledcolor purple">紫</a>
+                <a id="white" class="ledcolor white">白</a>
+            </div>
+        </div>
+        </div>
+    </div>
+<script type="text/javascript">
+
+	if (typeof WeixinJSBridge === "undefined") {
+	 	//alert(1111);
+		document.addEventListener('WeixinJSBridgeReady', readyFunc, false);
+	} else {
+		//alert(2222);
+		readyFunc();
+	}
+	
+	var readyFunc = function onBridgeReady() {
+		//alert(3333);
+		document.getElementById("ledon").addEventListener("touchstart", function(e){ 
+			e.preventDefault(); 
+			//alert(4444);
+			//setLedOn(1); 
+			ch('/s8AAQAMMAMAAAAA',1)
+		});
+		document.getElementById("ledoff").addEventListener("touchstart", function(e){ 
+			e.preventDefault();
+			//setLedOn(0); 
+			ch('/s8AAQAMIAIAAAAA',0)
+		});	
+		
+		document.getElementById("red").addEventListener("touchstart", function(e){ 
+			e.preventDefault(); 
+			//setLed('red');
+			ch('/s8AAQAMMAEAAAAA','red')
+		});		
+		document.getElementById("orange").addEventListener("touchstart", function(e){ 
+			e.preventDefault(); 
+			//setLed('orange');
+			ch('/s8AAQAMMAIAAAAA','orange')
+		});		
+		document.getElementById("yellow").addEventListener("touchstart", function(e){ 
+			e.preventDefault(); 
+			ch('/s8AAQAMMAMAAAAA','yellow')
+			//setLed('yellow');
+		});		
+		document.getElementById("blue").addEventListener("touchstart", function(e){ 
+			e.preventDefault(); 
+			//setLed('blue');
+			ch('/s8AAQAMMAQAAAAA','blue')
+		});	
+		document.getElementById("purple").addEventListener("touchstart", function(e){ 
+			e.preventDefault(); 
+			//setLed('purple');
+			ch('/s8AAQAMMAUAAAAA','purple')
+		});		
+		document.getElementById("white").addEventListener("touchstart", function(e){ 
+			e.preventDefault(); 
+			//setLed('white');
+			ch('/s8AAQAMMAYAAAAA','white')
+		});		
+	};
+	
+	var deviceId = "gh_273eb24512a3_b80bdd182f56c271f1e66f982e5cb590";
+	var nonceStr="Wm3WZYTPz0wzccnW";
+	var signature=null;	
+ 	var conn_stateStr="";
+	var blue_stateStr=""; 
+	
+	$(function(){
+		readyFunc();
+		getSignature();
+	});
+	function getSignature(){
+		var params={
+				nonceStr:nonceStr	
+		}
+		$.ajax({
+			type:"POST",
+			url:"/getSignature",
+			data:params,
+			async:false,
+			success:function(data){
+				//alert(data)
+				signature=data;
+				aaa();
+			},
+			error:function(){
+				//alert("失败！");
+			}
+		});
+	}
+	function aaa(){
+		wx.config({
+		    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+		    appId: 'wxe6ed495161ac50dc', // 必填，公众号的唯一标识
+		    timestamp:1414587457, // 必填，生成签名的时间戳
+		    nonceStr: nonceStr, // 必填，生成签名的随机串
+		    signature:signature,// 必填，签名，见附录1
+		   	jsApiList: ['openWXDeviceLib',
+		   	            'getWXDeviceInfos',
+		   	            'connectWXDevice',
+		   	            'sendDataToWXDevice',
+		   	          	'onWXDeviceStateChange',//监听设备的连接状态
+		   	            'onWXDeviceBluetoothStateChange'] // 监听手机蓝牙的连接状态
+		});
+		wx.ready(function () {
+			WeixinJSBridge.invoke('openWXDeviceLib', {}, function(res){
+				//alert("1111");
+				 //alert(res);
+			});
+			WeixinJSBridge.invoke('getWXDeviceInfos', {}, function(res){
+				//alert("2222");
+				 //alert(res);
+			});
+			WeixinJSBridge.invoke('connectWXDevice', {"deviceId":deviceId}, function(res){
+				//alert("3333");
+				 //alert(res);
+			});
+			WeixinJSBridge.on('onWXDeviceBluetoothStateChange', function(argv) {
+				//console.log('onWXDeviceBluetoothStateChange', argv);
+				blue_stateStr=JSON.stringify(argv); 
+			});
+			WeixinJSBridge.on('onWXDeviceStateChange', function(argv) {
+				//console.log('onWXDeviceStateChange', argv);
+				conn_stateStr=JSON.stringify(argv);
+			});
+		});
+	}
+	function ch(da,h5){
+		//alert("blue_stateStr="+blue_stateStr);
+		if(blue_stateStr.indexOf("off")>0){
+			alert("蓝牙未开启!");
+			return; 
+		} 
+		//alert("conn_stateStr="+conn_stateStr);
+		if(conn_stateStr.indexOf("disconnected")>0){
+			alert("设备未连接上!");
+			return;
+		}
+		if(conn_stateStr.indexOf("connecting")>0){
+			alert("设备正在连接中...");
+			return;
+		}
+		WeixinJSBridge.invoke('sendDataToWXDevice', {"deviceId":deviceId, "base64Data":da}, function(res){
+				//alert("6666");
+			if(h5==0||h5==1){
+				setLedOn(h5);
+			}else{
+				setLed(h5);
+			}
+		});
+	}
+//---------------------------------------------UP实际灯泡设备的颜色和开关------------------------------------------------------------------	
+
+//---------------------------------------------DOWN控制页面灯的颜色样式和开关---------------------------------------------------
+	//灯当前的状态，0：关，1：开
+	var bLed = 0;
+	var ledcolor = "yellow";
+	//灯的开关
+    function setLedOn(bTvOn){ 
+       if(bTvOn == 1){
+           bLed = 1;
+		   $('#ledbg').removeClass("led-off");	
+		   setLed(ledcolor);
+		   $('#ledon').hide();
+		   $('#ledoff').show();			   	   
+       }else{
+           bLed = 0;
+		   clearHover();
+		   $('#ledbg').removeClass();	
+		   $('#ledbg').addClass("ledbg led-off");	
+		   	   
+		   $('#ledon').show();
+		   $('#ledoff').hide();	
+       }
+    }   
+
+	//改变灯的颜色
+    function setLed(color){
+		if(bLed == 1){
+            ledcolor = color;
+
+			$('#ledbg').removeClass();
+			$('#ledbg').addClass("ledbg led-" + color);
+			clearHover();
+			$("#"+color).addClass(color+"hover");
+		}
+		//alert(color)
+	//	$('#led').addClass("led" + color);
+    } 
+	function clearHover(){
+		$("#red").removeClass("redhover");	
+		$("#orange").removeClass("orangehover");	
+		$("#yellow").removeClass("yellowhover");	
+		$("#blue").removeClass("bluehover");	
+		$("#purple").removeClass("purplehover");	
+		$("#white").removeClass("whitehover");
+	}
+	
+</script>
+</body>
+</html>

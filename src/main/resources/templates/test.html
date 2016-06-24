@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Test</title>
+        <meta name="keyword" content="">
+        <meta name="description" content="">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui, maximum-scale=1.0, user-scalable=no">
+        <meta http-equiv="cleartype" content="on">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-TileColor" content="#222222">
+        <link rel="stylesheet" href="css/styles/style.css">
+    </head>
+
+    <body>
+        <div class="form-info">
+            <div class="ceil">
+                <p>使用说明：页面引入socket.io.js 及 wxjdk.js</p>
+                <p>XJSObject为暴露对象，公开方法：</p>
+                <p>1.invoke 给外部调用入口方法</p>
+                <p>2.on 给外部监听方法</p>
+                <p>3.b64 base64操作对象（提供加密encode、解密deconde方法）</p>
+                <p>4.setConfig 初始化配置</p>
+                <p>-------------------------------</p>
+                <p>invoke、on 具体调用可以参考附件：《XJSAPI接口设计》</p>
+                <p>test.js为测试所用，另外测试时_debug为ture,否则请设为false</p>
+            </div>
+            <div class="ceil">
+                <div id="msgArea"></div>
+            </div>
+        </div>
+        <script src="js/socket.io.js"></script>
+        <script src="js/wxjdk.js"></script>
+        <script src="js/test.js"></script>
+    </body>
+
+</html>

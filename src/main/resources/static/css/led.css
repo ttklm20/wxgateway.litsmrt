@@ -1,0 +1,67 @@
+@charset "utf-8";
+/* CSS Document */
+body{ background:#ffffff;}
+body,p,h1,h2,dl,dt,dd{margin: 0;padding: 0;font-size: 1rem;color: #000; font-family:"黑体";}
+img{border:0;}
+a,button,input{-webkit-tap-highlight-color:rgba(255,0,0,0); border:0; text-decoration:none;}
+ol,ul{list-style:none;}
+.hid{width:0;height:0;overflow:hidden;text-indent:-9999px;}
+body{font-family: Helvetica; height:100%;}  
+section{position:relative; width:100%;height:100%;display:none; }
+.hide { display: none;}
+.block {display: block;}
+
+.wrap{position: fixed; height:100%;width: 100%;overflow: hidden;}
+.contianer{  height:100%;width: 100%;}
+/*sport*/
+.led,.ledbg{ position:absolute;left:0; top:0;display:block; height:100%;width: 100%;background:url(../img/ledbg.jpg) no-repeat;}
+.ledbg{ background:none;}
+.led-off{background:url(../img/led-off.jpg) no-repeat;}
+.led-red{background:url(../img/led-red.jpg) no-repeat;}
+.led-orange{background:url(../img/led-orange.jpg) no-repeat;}
+.led-yellow{background:url(../img/led-yellow.jpg) no-repeat;}
+.led-blue{background:url(../img/led-blue.jpg) no-repeat;}
+.led-purple{background:url(../img/led-purple.jpg) no-repeat;}
+.led-white{background:url(../img/led-white.jpg) no-repeat;}
+
+#led .title{ position:absolute;top:12%; left:8%;}
+#led .title a.buy{ display:block;width:118px; height:44px;background:#f5433b;border-radius:25px; color:#fff; text-align:center; font-size:28px; line-height:44px; margin-top:20px;}
+.data{ position:absolute;top:555px; left:10%; width:260px; height:260px; background:url(../img/databg.png) no-repeat;}
+
+
+.controlbar{ position:absolute; left:0; bottom:0; width:100%; height:190px;}
+.controlbar .bg{ position:absolute; left:0;top:0; height:190px; width:100%; background:#3b3841; opacity:0.9;}
+.controlbar a{ position:absolute;width:70px; height:70px; border:solid 2px #2f2d3a;border-radius:35px; background:#2f2e3a; line-height:70px; font-size:32px; color:#292835; text-align:center;}
+.controlbar a.on,.controlbar a.off{left:7%;top:20%; width:100px; height:100px;border-radius:65px;  background-image:url(../img/off.png); text-indent:-9999%;}
+.controlbar a.off{  background-image:url(../img/on.png);}
+
+.controlbar a.red{ left:38%;top:11%; background:#6b343a;}
+.controlbar a.redhover{ background:#f5433b;}
+.controlbar a.red:active{ background:#6b343a;}
+
+.controlbar a.orange{ left:58%;top:11%; background:#6e4428;}
+.controlbar a.orangehover{ background:#ff7800;}
+.controlbar a.orange:active{ background:#6e4428;}
+
+.controlbar a.yellow{ left:78%;top:11%;background:#6e6128;}
+.controlbar a.yellowhover{ background:#ffd800;}
+.controlbar a.yellow:active{ background:#6e6128;}
+
+.controlbar a.blue{ left:38%;top:55%;background:#214e70;}
+.controlbar a.bluehover{ background:#0097ed;}
+.controlbar a.blue:active{ background:#214e70;}
+
+.controlbar a.purple{left:58%;top:55%;background:#4d2074;}
+.controlbar a.purplehover{ background:#9400fb;}
+.controlbar a.purple:active{ background:#4d2074;}
+
+.controlbar a.white{left:78%;top:55%;background:#6e6d75;}
+.controlbar a.whitehover{ background:#ffffff;}
+.controlbar a.white:active{ background:#6e6d75;}
+
+.controlbar a.green{left:78%;top:55%;background:#99CC99;}
+.controlbar a.greenhover{ background:#99CC99;}
+.controlbar a.green:active{ background:#99CC99;}
+
+/*.controlbar a:hover{ background-color:#292835;}*/
+.controlbar a:active{ background-color:#2f2e3a;}
